@@ -181,7 +181,10 @@
                     for(let value of f)
                     {
                         if(values.has(value))
-                            values[value] += 1;
+                        {
+                            let n = values.get(value);
+                            values.set(value,n+1);  
+                        }
                         else
                             values.set(value,1); 
                     }
@@ -200,9 +203,14 @@
                     //     expReturn = expReturn.concat(`${value}<sup>1</sup> X `);
                     // }
 
-                    for(var value in values)
+                    let i = 1;
+                    for(var value of values)
                     {
-                        expReturn = expReturn.concat(`${value}<sup>${values[value]}</sup> x `);
+                        if((i == values.size))
+                            expReturn = expReturn.concat(`${value[0]}<sup>${value[1]}</sup> `);
+                        else
+                            expReturn = expReturn.concat(`${value[0]}<sup>${value[1]}</sup> x `);
+                        i += 1;
                     }
 
                     return expReturn;
